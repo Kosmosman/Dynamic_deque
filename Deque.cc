@@ -58,7 +58,7 @@ void deque::push_front(int num) {
     }
     if (front_ == &massive_[front_index_][0]) {
       front_index_--;
-      massive_[front_index_] = new int[massiveSize];
+    if (!massive_[front_index_]) massive_[front_index_] = new int[massiveSize];
       front_ = &massive_[front_index_][massiveSize - 1];
     } else {
       front_--;
@@ -82,7 +82,7 @@ void deque::push_back(int num) {
     }
     if (back_ == &massive_[back_index_][massiveSize - 1]) {
       back_index_++;
-      massive_[back_index_] = new int[massiveSize];
+    if (!massive_[back_index_]) massive_[back_index_] = new int[massiveSize];
       back_ = &massive_[back_index_][0];
     } else {
       back_++;
@@ -100,8 +100,8 @@ void deque::pop_front() {
     back_ = front_ = nullptr;
   } else {
     if (front_ == &massive_[front_index_][massiveSize - 1]) {
-      front_index_++;
       std::cout << *front_ << std::endl;
+      front_index_++;
       front_ = &massive_[front_index_][0];
     } else {
       std::cout << *front_ << std::endl;
@@ -118,8 +118,8 @@ void deque::pop_back() {
     back_ = front_ = nullptr;
   } else {
     if (back_ == &massive_[back_index_][0]) {
-      back_index_--;
       std::cout << *back_ << std::endl;
+      back_index_--;
       back_ = &massive_[back_index_][massiveSize - 1];
     } else {
       std::cout << *back_ << std::endl;
